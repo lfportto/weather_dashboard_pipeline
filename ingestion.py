@@ -85,7 +85,6 @@ for r in resultados:
             temperature, feels_like, humidity, pressure, wind_speed, wind_direction
         )
         VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
-        ON CONFLICT (city_name, timestamp_utc) DO NOTHING
         """,
         (
             r["city"],
