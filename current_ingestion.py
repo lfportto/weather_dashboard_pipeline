@@ -1,3 +1,15 @@
+"""
+Filename: current_ingestion.py
+Author: Luis Felipe Porto
+Date: 19-04-2026
+Version: 1.0
+Description: This script collects current weather data from the OpenWeatherMap API for a predefined list of cities.
+It captures real-time atmospheric conditions such as temperature, humidity, pressure, and wind metrics,
+then loads the processed data into a PostgreSQL database. This script is designed to run periodically
+to maintain up-to-date observations.
+Contact: luisfelipeporto.lfp@gmail.com
+"""
+
 import psycopg2
 import requests
 import time
@@ -43,6 +55,9 @@ def coletar_clima(cidade):
         if response.status_code == 200:
             data = response.json()
 
+            # Extrair dados de clima
+            weather = data["weather"][0]
+
             return {
                 "city": data["name"],
                 "country": data["sys"]["country"],
@@ -54,7 +69,11 @@ def coletar_clima(cidade):
                 "humidity": data["main"]["humidity"],
                 "pressure": data["main"]["pressure"],
                 "wind_speed": data["wind"]["speed"],
-                "wind_direction": data["wind"].get("deg")
+                "wind_direction": data["wind"].get("deg"),
+                "weather_main": weather.get("main"),
+                "weather_description": weather.get("description"),
+                "weather_icon": weather.get("icon"),
+                "source_api": "openweather"
             }
 
         else:
@@ -80,11 +99,12 @@ for cidade in cidades:
 for r in resultados:
     cursor.execute(
         """
-        INSERT INTO weather_data (
+        INSERT INTO weather_current (
             city_name, country, latitude, longitude, timestamp_utc,
-            temperature, feels_like, humidity, pressure, wind_speed, wind_direction
+            temperature, feels_like, humidity, pressure, wind_speed, wind_direction,
+            weather_main, weather_description, weather_icon, source_api
         )
-        VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+        VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
         """,
         (
             r["city"],
@@ -97,7 +117,11 @@ for r in resultados:
             r["humidity"],
             r["pressure"],
             r["wind_speed"],
-            r["wind_direction"]
+            r["wind_direction"],
+            r["weather_main"],
+            r["weather_description"],
+            r["weather_icon"],
+            r["source_api"]
         )
     )
 

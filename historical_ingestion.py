@@ -1,3 +1,15 @@
+"""
+Filename: historical_ingestion.py
+Author: Luis Felipe Porto
+Date: 19-04-2026
+Version: 1.0
+Description: This script performs the historical data backfill for the weather pipeline using Meteostat.
+It retrieves daily weather data for the past defined period (e.g., 180 days) across multiple global cities,
+applies basic data validation and transformation, and loads the results into a PostgreSQL database.
+This process is intended to be executed once to initialize the dataset.
+Contact: luisfelipeporto.lfp@gmail.com
+"""
+
 import psycopg2
 import os
 from datetime import datetime, timedelta, timezone
@@ -17,9 +29,9 @@ end_date = datetime.now()
 start_date = end_date - timedelta(days=180)
 
 # Limpar tabela antes do backfill (histórico)
-cursor.execute("TRUNCATE TABLE weather_data RESTART IDENTITY;")
+cursor.execute("TRUNCATE TABLE weather_historical RESTART IDENTITY;")
 conn.commit()
-print("Registros anteriores da tabela weather_data limpos para nova inserção.")
+print("Registros anteriores da tabela weather_historical limpos para nova inserção.")
 
 # Lista de cidades com coordenadas
 cidades = [
@@ -69,7 +81,11 @@ for cidade in cidades:
                 None,  # humidity
                 float(row["pres"]) if not pd.isna(row.get("pres")) else None,
                 float(row["wspd"]) if not pd.isna(row.get("wspd")) else None,
-                None   # wind_direction
+                None,  # wind_direction
+                None,  # weather_main
+                None,  # weather_description
+                None,  # weather_icon
+                "meteostat"  # source_api
             ))
 
     except Exception as e:
@@ -78,11 +94,12 @@ for cidade in cidades:
 # Inserção em batch
 cursor.executemany(
     """
-    INSERT INTO weather_data (
+    INSERT INTO weather_historical (
         city_name, country, latitude, longitude, timestamp_utc,
-        temperature, feels_like, humidity, pressure, wind_speed, wind_direction
+        temperature, feels_like, humidity, pressure, wind_speed, wind_direction,
+        weather_main, weather_description, weather_icon, source_api
     )
-    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
     """,
     registros
 )
