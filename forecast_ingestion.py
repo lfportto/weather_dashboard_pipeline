@@ -28,6 +28,11 @@ def forecast_ingestion(): # Transformar em função para ser chamado pelo Prefec
     API_KEY = os.getenv("API_KEY")
     url = "https://api.openweathermap.org/data/2.5/forecast"
 
+    # Limpar tabela antes da nova ingestão
+    cursor.execute("TRUNCATE TABLE weather_forecast RESTART IDENTITY;")
+    conn.commit()
+    print("Registros anteriores da tabela weather_forecast limpos para nova inserção.")
+
     # Lista de cidades para coletar dados
     cidades = [
         "Sao Paulo",
