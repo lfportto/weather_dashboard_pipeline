@@ -121,5 +121,8 @@ A fim de manter os dados sempre atualizados, foi criada uma orquestração com P
 - Aplicação de UX/UI em visualização de dados
 - Boas práticas de automação e versionamento
 
+## Licença
+Este projeto está licenciado sob a [Licença MIT](LICENSE).
+
 ## Tags
 `#Dados` `#AnaliseDeDados` `#EngenhariaDeDados` `#PowerBI` `#Python` `#ETL` `#Dashboard` `#VisualizaçãoDeDados` `#Prefect` `#API` `#PostgreSQL` `#ProjetoDeDados` `#Clima` `#Portfolio` `#Data` `#DataAnalytics` `#DataEngineering` `#DataVisualization` `#DataProject` `#Weather`
