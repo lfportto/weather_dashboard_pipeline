@@ -125,4 +125,4 @@ A fim de manter os dados sempre atualizados, foi criada uma orquestração com P
 Este projeto está licenciado sob a [Licença MIT](LICENSE).
 
 ## Tags
-`#Dados` `#AnaliseDeDados` `#EngenhariaDeDados` `#PowerBI` `#Python` `#ETL` `#Dashboard` `#VisualizaçãoDeDados` `#Prefect` `#API` `#PostgreSQL` `#ProjetoDeDados` `#Clima` `#Portfolio` `#Data` `#DataAnalytics` `#DataEngineering` `#DataVisualization` `#DataProject` `#Weather`
+`#Dados` `#AnaliseDeDados` `#EngenhariaDeDados` `#PowerBI` `#Python` `#ETL` `#Dashboard` `#VisualizaçãoDeDados` `#Prefect` `#API` `#PostgreSQL` `#ProjetoDeDados` `#Clima` `#cienciadedados` `#engenhariadedados` `#Portfolio` `#Data` `#DataAnalytics` `#DataEngineering` `#DataVisualization` `#DataProject` `#Weather` `#pipeline` `#dados` `#visualizacaodedados` `#dashboard` `#cloud` `#datascience` `#dataengineering` `#datapipeline` `#etlprocess` `#datavisualization` `#automation` `#database` `#postgres` `#cloudcomputing` `#pythonproject` `#apiconsumption` `#realtime` `#datadriven` `#analytics` `#businessintelligence` `#cicd` `#clouddata` `#datastack` `#dataportfolio`
