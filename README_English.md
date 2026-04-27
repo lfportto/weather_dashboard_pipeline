@@ -94,7 +94,7 @@ Often associated with interfaces like Windows Vista and Windows 7, Frutiger Aero
 This concept fits perfectly with the purpose of this project, which revolves around environmental and weather data. The combination of colors, visual elements, and effects aims not only to present information but also to create a more immersive, pleasant, and even nostalgic user experience.
 
 ## Color Palette
-![Palette](https://github.com/user-attachments/assets/c947069c-e3eb-4aa9-8858-3e3910e77035)
+![Palette](https://github.com/user-attachments/assets/8104c778-706d-4212-b93e-ad56a81b3ea1)
 
 ## Automation (Prefect Cloud)
 To keep the data always up to date, orchestration was implemented using Prefect Cloud to automatically run the ingestion scripts. The jobs created were:
