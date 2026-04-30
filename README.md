@@ -23,6 +23,7 @@ Este é um projeto pessoal desenvolvido com foco no aprimoramento de habilidades
 - Meteostat API
 - Prefect Cloud
 - Power BI
+- Figma (para o design do dashboard)
 
 ## Arquitetura do Projeto
 A figura abaixo mostra como foi estruturada a arquitetura por trás desse projeto:  
