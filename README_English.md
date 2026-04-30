@@ -23,6 +23,7 @@ This is a personal project focused on improving data analytics skills, including
 - Meteostat API
 - Prefect Cloud
 - Power BI
+- Figma (for the dashboard desing)
 
 ## Project Architecture
 The figure below illustrates the architecture behind this project:
